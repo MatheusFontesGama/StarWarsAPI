@@ -8,10 +8,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-    <title>Star Wars</title>
+    <title>Detalhes</title>
   </head>
   <body>
-
+    
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand " href="Index.php">
             <img src="img/yoda_logo.jpg" width="60" height="60" class="d-inline-block align-center" alt="">
@@ -20,40 +20,53 @@
     </nav>  
     
     <?php
-      //lista os filmes na api SWAPI
-        $url = "https://swapi.co/api/films/";
+        $id = $_GET['id'];
+        switch($id){
+            case 1:
+                $id = 4;
+                break;
+            case 2:
+                $id = 5;
+                break;
+            case 3:
+                $id = 6;
+                break;
+            case 4:
+                $id = 1;
+                break;
+            case 5:
+                $id = 2;
+                break;
+            case 6:
+                $id = 3;
+                break;
+            case 7:
+                $id = 7;
+                break;
+            default:
+                echo("Indisponivel");
+                break;
+        }
+
+        $url = "https://swapi.co/api/films/".$id;
         $filmes = file_get_contents($url);
         $filmes = json_decode($filmes);
     ?>
-      <div class = "container" >
-        <div class="row">
-          <?php
-            if(count($filmes->results)) {
-              $i = 0;
-              foreach($filmes->results as $filme){ 
-                $i++; 
-          ?>
-          <div class="col">
-            <div class="card" style="width: 18rem;">
-                <?php $a = "SW_";
-                $ep = $filme->episode_id;
-                $img = $a.$ep;?>
-              <img src="img/<?php echo($img)?>.jpg" class="card-img-top" alt="<?php echo($filme->title) ?> ">
-              <div class="card-body">
-                <h5 class="card-title"><?php echo($filme->title)?></h5>
-                <?php $h = "Detalhes.php?id=";
-                $ref = $h.$ep;
-                ?>
-                <a href="<?php echo($ref)?>" class="btn btn-dark">Detalhes</a>
-              </div>
-            </div>
-          </div>
-            <?php }
-        }
+
+    <div class="container">
+        <?php
+            $img = "SW_";
+            $img .= $id
         ?>
-        </div>
-      </div>
-        
+        <!--<img src="img/<?php// echo($img)?>.jpg" width="222" height="452" alt="<?php// echo($filme->title) ?> "> -->
+        <?php
+            echo("Título: ".$filmes->title);?> <br>
+            <?php echo("Diretor: ".$filmes->director);?> <br>
+            <?php echo("Data de Lançamento: ".$filmes->release_date);?> <br>
+            <?php echo("Sinopse: ".$filmes->opening_crawl);
+            
+        ?>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
