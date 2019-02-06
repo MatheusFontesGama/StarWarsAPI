@@ -17,18 +17,41 @@
             <img src="img/yoda_logo.jpg" width="50" height="50" class="d-inline-block align-center" alt="">
             Yodaknowledges
         </a>
-    </nav>
-    <div >
-    </div>  
+    </nav>  
     
     <?php
       $url = "https://swapi.co/api/films/";
       $filmes = file_get_contents($url);
       $filmes = json_decode($filmes);
-      echo "<pre>";
-      print_r($filmes);
-      exit;
+      //echo "<pre>";
+      //print_r($filmes);
+      //exit;
     ?>
+      <div class = "container" >
+        <div class="row">
+          <?php
+            if(count($filmes->results)) {
+              $i = 0;
+              foreach($filmes->results as $filme){ 
+                $i++; 
+          ?>
+          <div class="col">
+            <div class="card" style="width: 18rem;">
+                <?php $a = "SW_";
+                $ep = $filme->episode_id;
+                $img = $a.$ep;?>
+              <img src="img/<?php echo($img)?>.jpg" class="card-img-top" alt="<?php echo($filme->title) ?> ">
+              <div class="card-body">
+                <h5 class="card-title"><?php echo($filme->title)?></h5>
+                <a href="#" class="btn btn-dark">Mais detalhes</a>
+              </div>
+            </div>
+          </div>
+            <?php }
+        }
+        ?>
+        </div>
+      </div>
         
 
     <!-- Optional JavaScript -->
