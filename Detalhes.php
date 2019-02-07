@@ -60,12 +60,18 @@
         ?>
         <!--<img src="img/<?php// echo($img)?>.jpg" width="222" height="452" alt="<?php// echo($filme->title) ?> "> -->
         <?php
-            echo("Título: ".$filmes->title);?> <br>
-            <?php echo("Diretor: ".$filmes->director);?> <br>
-            <?php echo("Data de Lançamento: ".$filmes->release_date);?> <br>
-            <?php echo("Sinopse: ".$filmes->opening_crawl);
-            
-        ?>
+            echo("Título: ".$filmes->title);?> <br/>
+            <?php echo("Diretor: ".$filmes->director);?> <br/>
+            <?php echo("Data de Lançamento: ".$filmes->release_date);?> <br/>
+            <?php echo("Sinopse: ".$filmes->opening_crawl);?> <br/>
+            <?php
+                echo("Planetas: ");
+                foreach($filmes->planets as $urlP){
+                    $planeta = json_decode(file_get_contents($urlP));
+                    echo ($planeta->name."; ");     
+                }
+            ?>
+
     </div>
 
     <!-- Optional JavaScript -->
