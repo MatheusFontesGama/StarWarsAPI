@@ -106,6 +106,15 @@
                     echo ($especie->name."; ");     
                 }
             ?>
+            <br/>
+            <br/>
+            <?php
+                echo("Personagens: ");
+                foreach($filmes->characters as $urlCharacters){
+                    $character = json_decode(file_get_contents($urlCharacters));
+                    echo ($character->name."; ");     
+                }
+            ?>
 
     </div>
 
