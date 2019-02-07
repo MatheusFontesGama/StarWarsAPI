@@ -71,6 +71,14 @@
                     echo ($planeta->name."; ");     
                 }
             ?>
+            <br/>
+            <?php
+                echo("Espaçonaves: ");
+                foreach($filmes->starships as $urlS){
+                    $nave = json_decode(file_get_contents($urlS));
+                    echo ($nave->name."; ");     
+                }
+            ?>
 
     </div>
 
