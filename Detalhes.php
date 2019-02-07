@@ -60,10 +60,18 @@
         ?>
         <!--<img src="img/<?php// echo($img)?>.jpg" width="222" height="452" alt="<?php// echo($filme->title) ?> "> -->
         <?php
-            echo("Título: ".$filmes->title);?> <br/>
-            <?php echo("Diretor: ".$filmes->director);?> <br/>
-            <?php echo("Data de Lançamento: ".$filmes->release_date);?> <br/>
-            <?php echo("Sinopse: ".$filmes->opening_crawl);?> <br/>
+            echo("Título: ".$filmes->title);?> 
+            <br/>
+            <br/>
+            <?php echo("Diretor: ".$filmes->director);?> 
+            <br/>
+            <br/>
+            <?php echo("Data de Lançamento: ".$filmes->release_date);?> 
+            <br/>
+            <br/>
+            <?php echo("Sinopse: ".$filmes->opening_crawl);?> 
+            <br/>
+            <br/>
             <?php
                 echo("Planetas: ");
                 foreach($filmes->planets as $urlP){
@@ -72,11 +80,30 @@
                 }
             ?>
             <br/>
+            <br/>
             <?php
                 echo("Espaçonaves: ");
                 foreach($filmes->starships as $urlS){
                     $nave = json_decode(file_get_contents($urlS));
                     echo ($nave->name."; ");     
+                }
+            ?>
+            <br/>
+            <br/>
+            <?php
+                echo("Veículos: ");
+                foreach($filmes->vehicles as $urlVehicles){
+                    $veiculo = json_decode(file_get_contents($urlVehicles));
+                    echo ($veiculo->name."; ");     
+                }
+            ?>
+            <br/>
+            <br/>
+            <?php
+                echo("Espécies: ");
+                foreach($filmes->species as $urlSpecie){
+                    $especie = json_decode(file_get_contents($urlSpecie));
+                    echo ($especie->name."; ");     
                 }
             ?>
 
